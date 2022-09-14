@@ -1,0 +1,20 @@
+.pay-container{
+ display:flex;
+ align-Items:center;
+ height:100vh;
+ justify-content: center;
+
+}
+
+.pay-button{
+   border:none;
+   width:120;
+   border-radius: 10px;
+   padding:20px;
+   background-color: black;
+   color:white;
+   font-weight: 600;
+   cursor: pointer;
+
+
+}
