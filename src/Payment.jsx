@@ -3,10 +3,11 @@ import StripeCheckout from 'react-stripe-checkout';
 import "./payment.css";
 import {useState,useEffect} from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 const KEY="pk_test_51LhuSwKO96OPe2eppEvdkgpSuGKnZb2bNT1MT6eBFb4gDVEwvlMiDFPyltHtg6KXDJkCeP4osGBdfQVlAdUvMRq8003zUtHYmr";
 function Payment() {
   
-  
+   const navigate=useNavigate()
     const[stripeToken,setStripeToken]=useState(null);
 
     const onToken=(token)=>{
@@ -23,6 +24,7 @@ function Payment() {
                  amount:2000,
         });
         console.log(res.data);
+        navigate("/success")
     }catch(err){
         console.log(err);
     }
@@ -36,6 +38,9 @@ function Payment() {
 
     return (
     <div className="pay-container">
+        {stripeToken  ? (<span>processing please wait...</span>) :(
+
+        
         <StripeCheckout
         name="E-store"
         billingAddress
@@ -49,6 +54,7 @@ function Payment() {
             Pay Now
             </button>
             </StripeCheckout>
+            )}
     </div>
   )
 }
